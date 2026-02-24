@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>虛擬碼生成 - Dify Toolset Demo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-50 min-h-screen flex flex-col">
+    <header class="bg-slate-800 text-white shadow-md shrink-0">
+        <div class="container mx-auto px-6 h-16 flex items-center justify-between">
+            <h1 class="text-xl font-semibold tracking-tight">虛擬碼生成器 (Demo)</h1>
+            <a href="dashboard.html" class="text-sm bg-slate-700 hover:bg-slate-600 px-3 py-1 rounded transition-colors">回儀表板</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-8 flex-grow">
+        <div class="max-w-5xl mx-auto bg-white rounded-lg shadow-sm border border-slate-200 p-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="font-bold text-slate-800 mb-2">原始程式碼 (COBOL)</h3>
+                    <pre class="bg-slate-900 text-slate-300 p-4 rounded-md text-xs font-mono h-80 overflow-auto">
+IF BAL-AMOUNT > 1000
+    MOVE 'Y' TO LIMIT-FLAG
+    PERFORM PROCESS-VIP
+ELSE
+    MOVE 'N' TO LIMIT-FLAG
+END-IF.</pre>
+                    <button class="mt-4 w-full bg-cyan-600 text-white py-2 rounded shadow">轉換為虛擬碼</button>
+                </div>
+                <div>
+                    <h3 class="font-bold text-slate-800 mb-2">生成結果 (Pseudocode)</h3>
+                    <div class="bg-cyan-50 border border-cyan-100 p-4 rounded-md text-sm text-cyan-800 h-80 font-mono">
+                        IF balance is greater than 1000 THEN<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;Set VIP status to YES<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;Execute VIP processing logic<br>
+                        ELSE<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;Set VIP status to NO<br>
+                        END IF
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

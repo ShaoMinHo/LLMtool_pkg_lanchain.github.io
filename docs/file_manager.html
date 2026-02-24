@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>檔案下載 - Dify Toolset Demo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-50 min-h-screen flex flex-col">
+    <header class="bg-slate-800 text-white shadow-md shrink-0">
+        <div class="container mx-auto px-6 h-16 flex items-center justify-between">
+            <h1 class="text-xl font-semibold tracking-tight">檔案下載中心 (Demo)</h1>
+            <a href="dashboard.html" class="text-sm bg-slate-700 hover:bg-slate-600 px-3 py-1 rounded transition-colors">回儀表板</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-8 flex-grow">
+        <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-sm border border-slate-200 overflow-hidden">
+            <div class="p-6 bg-slate-50 border-b border-slate-200">
+                <h2 class="text-lg font-bold text-slate-800">工作區檔案列表</h2>
+                <p class="text-sm text-slate-500">路徑: C:\Workspace\Demo_Project</p>
+            </div>
+            <table class="w-full text-left border-collapse">
+                <thead class="bg-slate-50 text-slate-500 text-xs uppercase font-semibold">
+                    <tr>
+                        <th class="px-6 py-3 border-b border-slate-200">檔案名稱</th>
+                        <th class="px-6 py-3 border-b border-slate-200">類型</th>
+                        <th class="px-6 py-3 border-b border-slate-200">動作</th>
+                    </tr>
+                </thead>
+                <tbody class="text-sm text-slate-700">
+                    <tr class="hover:bg-slate-50">
+                        <td class="px-6 py-4 border-b border-slate-100">ACCOUNT_REPORT.docx</td>
+                        <td class="px-6 py-4 border-b border-slate-100">Word 文件</td>
+                        <td class="px-6 py-4 border-b border-slate-100"><button class="text-indigo-600 hover:underline">下載</button></td>
+                    </tr>
+                    <tr class="hover:bg-slate-50">
+                        <td class="px-6 py-4 border-b border-slate-100">logic_flow.png</td>
+                        <td class="px-6 py-4 border-b border-slate-100">圖片</td>
+                        <td class="px-6 py-4 border-b border-slate-100"><button class="text-indigo-600 hover:underline">下載</button></td>
+                    </tr>
+                    <tr class="hover:bg-slate-50">
+                        <td class="px-6 py-4 border-b border-slate-100">spec_v1.md</td>
+                        <td class="px-6 py-4 border-b border-slate-100">Markdown</td>
+                        <td class="px-6 py-4 border-b border-slate-100"><button class="text-indigo-600 hover:underline">下載</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+</body>
+</html>

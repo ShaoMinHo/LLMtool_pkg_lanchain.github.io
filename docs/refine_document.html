@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文件潤飾 - Dify Toolset Demo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-50 min-h-screen flex flex-col">
+    <header class="bg-slate-800 text-white shadow-md shrink-0">
+        <div class="container mx-auto px-6 h-16 flex items-center justify-between">
+            <h1 class="text-xl font-semibold tracking-tight">AI 文件潤飾 (Demo)</h1>
+            <a href="dashboard.html" class="text-sm bg-slate-700 hover:bg-slate-600 px-3 py-1 rounded transition-colors">回儀表板</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-8 flex-grow">
+        <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-sm border border-slate-200 p-8">
+            <label class="block font-bold text-slate-800 mb-2">請輸入需要潤飾的文字：</label>
+            <textarea class="w-full p-4 border border-slate-300 rounded-md h-40 mb-4" placeholder="例如：這支程式是用來處理客戶餘額的...">這支程式是用來處理客戶餘額的，如果錢不夠就報錯。</textarea>
+            
+            <div class="flex space-x-4 mb-6">
+                <button class="bg-teal-600 text-white px-6 py-2 rounded shadow hover:bg-teal-700 transition-colors">專業化建議</button>
+                <button class="bg-slate-200 text-slate-700 px-6 py-2 rounded shadow hover:bg-slate-300 transition-colors">修正錯字</button>
+            </div>
+
+            <div class="bg-teal-50 border border-teal-100 p-6 rounded-md">
+                <h3 class="font-bold text-teal-800 mb-2">AI 潤飾結果：</h3>
+                <p class="text-teal-900 leading-relaxed italic">
+                    「本模組負責執行客戶帳戶餘額之檢核邏輯。當帳戶可用餘額不足以支應交易請求時，系統將自動觸發異常處理機制並回傳對應之錯誤代碼。」
+                </p>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
