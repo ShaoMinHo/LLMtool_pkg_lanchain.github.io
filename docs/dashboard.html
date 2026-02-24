@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>工作台 - Dify Toolset Demo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-50 min-h-screen flex flex-col">
+
+    <!-- Navbar -->
+    <nav class="bg-slate-800 text-white shadow-lg shrink-0">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <span class="text-xl font-bold tracking-wide">系統工作台</span>
+                <span class="px-2 py-1 bg-slate-700 rounded text-xs text-slate-300">demo_user</span>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a href="settings.html" class="text-sm bg-slate-700 hover:bg-slate-600 px-4 py-2 rounded transition-colors flex items-center">
+                    設定
+                </a>
+                <a href="index.html" class="text-sm bg-red-600 hover:bg-red-700 px-4 py-2 rounded transition-colors flex items-center">
+                    登出
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-6 py-8 flex-grow">
+        
+        <!-- 上方資訊列 -->
+        <div class="bg-white rounded-lg shadow-sm border border-slate-200 p-4 mb-8 flex flex-col md:flex-row justify-between items-start md:items-center space-y-4 md:space-y-0">
+            <div class="flex-grow">
+                <h2 class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">Current Workspace</h2>
+                <div class="flex items-center space-x-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
+                    </svg>
+                    <code class="font-mono text-slate-700 bg-slate-100 px-2 py-1 rounded text-sm break-all">C:\Workspace\Demo_Project</code>
+                </div>
+            </div>
+            <div class="flex items-center space-x-3 shrink-0">
+                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                    <span class="w-2 h-2 mr-1 bg-green-500 rounded-full"></span> 連線正常 (Demo)
+                </span>
+                <a href="settings.html" class="text-sm text-indigo-600 hover:text-indigo-800 font-medium hover:underline ml-4">
+                    更改設定 &rarr;
+                </a>
+            </div>
+        </div>
+
+        <!-- 功能卡片 Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            
+            <!-- MD to Word -->
+            <a href="md_to_word.html" class="block bg-white rounded-xl shadow hover:shadow-lg transition-all duration-300 overflow-hidden border border-slate-100 group cursor-pointer hover:-translate-y-1 relative">
+                <div class="p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="bg-blue-600 text-white p-3 rounded-lg shadow-sm">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+                        </div>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-800 mb-1 group-hover:text-indigo-600">Markdown 轉 Word</h3>
+                    <p class="text-sm text-slate-500">將多份 Markdown 文件合併並轉換為專業格式的 Word 報表。</p>
+                </div>
+                <div class="h-1 w-full bg-slate-100"><div class="h-full bg-blue-600 w-0 group-hover:w-full transition-all duration-500"></div></div>
+            </a>
+
+            <!-- Mermaid to Image -->
+            <a href="mermaid_to_image.html" class="block bg-white rounded-xl shadow hover:shadow-lg transition-all duration-300 overflow-hidden border border-slate-100 group cursor-pointer hover:-translate-y-1 relative">
+                <div class="p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="bg-indigo-600 text-white p-3 rounded-lg shadow-sm">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>
+                        </div>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-800 mb-1 group-hover:text-indigo-600">Mermaid 圖表繪製</h3>
+                    <p class="text-sm text-slate-500">將 Mermaid 語法自動轉換為高品質的圖片檔 (PNG/SVG)。</p>
+                </div>
+                <div class="h-1 w-full bg-slate-100"><div class="h-full bg-indigo-600 w-0 group-hover:w-full transition-all duration-500"></div></div>
+            </a>
+
+            <!-- COBOL Processor -->
+            <a href="cobol_analysis.html" class="block bg-white rounded-xl shadow hover:shadow-lg transition-all duration-300 overflow-hidden border border-slate-100 group cursor-pointer hover:-translate-y-1 relative">
+                <div class="p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="bg-emerald-600 text-white p-3 rounded-lg shadow-sm">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg>
+                        </div>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-800 mb-1 group-hover:text-indigo-600">COBOL 程式碼分析</h3>
+                    <p class="text-sm text-slate-500">自動掃描與解構 COBOL/RPG 程式邏輯，產生結構化文件。</p>
+                </div>
+                <div class="h-1 w-full bg-slate-100"><div class="h-full bg-emerald-600 w-0 group-hover:w-full transition-all duration-500"></div></div>
+            </a>
+
+        </div>
+
+    </main>
+
+    <footer class="bg-white border-t border-slate-200 mt-auto">
+        <div class="container mx-auto px-6 py-4 text-center text-slate-500 text-sm">
+            &copy; 2025 Dify Desktop Toolset Demo
+        </div>
+    </footer>
+</body>
+</html>

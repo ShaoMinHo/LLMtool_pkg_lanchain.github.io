@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dify Toolset Demo - 系統登入</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-100 flex items-center justify-center min-h-screen">
+
+    <div class="bg-white p-8 rounded-xl shadow-xl w-full max-w-md">
+        <div class="text-center mb-8">
+            <h1 class="text-2xl font-bold text-slate-800">Dify Desktop Toolset</h1>
+            <p class="text-slate-500 text-sm mt-2">靜態展示版本 (GitHub Pages Demo)</p>
+        </div>
+
+        <div class="mb-4 p-3 rounded-md text-sm bg-blue-100 text-blue-700">
+            提示：Demo 版本無需帳號密碼，直接點擊「登入系統」即可進入。
+        </div>
+
+        <div class="space-y-6">
+            <div>
+                <label for="username" class="block text-sm font-medium text-slate-700 mb-1">帳號 (Username)</label>
+                <input type="text" id="username" value="demo_user" readonly 
+                       class="w-full px-3 py-2 border border-slate-300 rounded-md bg-slate-50 cursor-not-allowed">
+            </div>
+
+            <div>
+                <label for="password" class="block text-sm font-medium text-slate-700 mb-1">密碼 (Password)</label>
+                <input type="password" id="password" value="********" readonly 
+                       class="w-full px-3 py-2 border border-slate-300 rounded-md bg-slate-50 cursor-not-allowed">
+            </div>
+
+            <button onclick="location.href='dashboard.html'"
+                    class="w-full bg-sky-600 text-white py-2 px-4 rounded-md hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500 transition-colors">
+                登入系統
+            </button>
+        </div>
+
+        <div class="mt-6 text-center text-xs text-slate-400">
+            &copy; 2025 Dify Desktop Toolset - Demo Version
+        </div>
+    </div>
+
+</body>
+</html>

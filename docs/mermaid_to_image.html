@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mermaid 轉換 - Dify Toolset Demo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-50 min-h-screen flex flex-col">
+
+    <header class="bg-slate-800 text-white shadow-md shrink-0">
+        <div class="container mx-auto px-6 h-16 flex items-center justify-between">
+            <h1 class="text-xl font-semibold tracking-tight">Mermaid 圖表工具 (Demo)</h1>
+            <a href="dashboard.html" class="text-sm bg-slate-700 hover:bg-slate-600 px-3 py-1 rounded transition-colors">回儀表板</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-8 flex-grow">
+        <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8">
+            
+            <!-- Left: Editor -->
+            <div class="bg-white rounded-lg shadow-sm border border-slate-200 p-6 flex flex-col">
+                <h2 class="text-lg font-bold text-slate-800 mb-4">Mermaid 語法編輯</h2>
+                <textarea id="mermaidInput" class="w-full flex-grow p-4 font-mono text-sm border border-slate-300 rounded-md bg-slate-50 focus:ring-2 focus:ring-indigo-500 outline-none min-h-[400px]">
+graph TD
+    A[開始] --> B{是否合規?}
+    B -- 是 --> C[核准]
+    B -- 否 --> D[退回]
+    C --> E[結束]
+    D --> E</textarea>
+                <button onclick="simulateRender()" id="renderBtn" class="mt-4 w-full bg-indigo-600 text-white px-6 py-2 rounded-md hover:bg-indigo-700 transition-colors">
+                    轉換為圖片
+                </button>
+            </div>
+
+            <!-- Right: Preview -->
+            <div class="bg-white rounded-lg shadow-sm border border-slate-200 p-6">
+                <h2 class="text-lg font-bold text-slate-800 mb-4">預覽結果</h2>
+                <div id="previewArea" class="border border-slate-100 rounded bg-slate-50 flex items-center justify-center min-h-[400px]">
+                    <div id="placeholder" class="text-slate-400 text-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mx-auto mb-2 opacity-20" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                        點擊「轉換」以查看結果
+                    </div>
+                    <div id="simulatedImage" class="hidden text-center">
+                        <!-- Simulated Chart as SVG/Image -->
+                        <div class="bg-white p-8 border border-slate-200 shadow-sm rounded">
+                            <svg width="200" height="250" viewBox="0 0 200 250" class="mx-auto">
+                                <rect x="50" y="10" width="100" height="40" rx="5" fill="#eef2ff" stroke="#4f46e5" />
+                                <text x="100" y="35" text-anchor="middle" font-size="12" fill="#4f46e5">開始</text>
+                                <path d="M100 50 L100 80" stroke="#4f46e5" fill="none" marker-end="arrowhead" />
+                                <polygon points="100,80 130,110 100,140 70,110" fill="#fff7ed" stroke="#f97316" />
+                                <text x="100" y="115" text-anchor="middle" font-size="10" fill="#f97316">是否合規?</text>
+                            </svg>
+                        </div>
+                        <p class="mt-4 text-sm text-green-600 font-medium">轉換成功！檔案已儲存至 outputs 子目錄。</p>
+                        <button class="mt-2 text-indigo-600 hover:underline text-sm font-medium">下載 PNG 檔案</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        function simulateRender() {
+            const btn = document.getElementById('renderBtn');
+            const placeholder = document.getElementById('placeholder');
+            const simulatedImage = document.getElementById('simulatedImage');
+            
+            btn.disabled = true;
+            btn.innerText = '正在處理渲染...';
+            placeholder.classList.add('hidden');
+            simulatedImage.classList.add('hidden');
+
+            setTimeout(() => {
+                btn.disabled = false;
+                btn.innerText = '轉換為圖片';
+                simulatedImage.classList.remove('hidden');
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
