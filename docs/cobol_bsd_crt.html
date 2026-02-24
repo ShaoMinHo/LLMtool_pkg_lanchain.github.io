@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COBOL 分析任務監控 - Demo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .status-dot { height: 10px; width: 10px; border-radius: 50%; display: inline-block; margin-right: 8px; vertical-align: middle; }
+        .status-processing { background-color: #fbbf24; } 
+        .status-success { background-color: #34d399; } 
+        #logListContainer::-webkit-scrollbar { width: 8px; }
+        #logListContainer::-webkit-scrollbar-track { background: #f1f5f9; }
+        #logListContainer::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-800 h-screen flex flex-col overflow-hidden">
+
+    <header class="bg-slate-800 text-white shadow-md shrink-0 z-50">
+        <div class="container mx-auto px-6 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-4">
+                <h1 class="text-xl font-semibold tracking-tight">COBOL 分析監控台 (Demo)</h1>
+                <span id="taskStatusBadge" class="px-2 py-1 rounded text-xs bg-blue-600 text-white animate-pulse hidden">處理中...</span>
+                <button id="headerStartBtn" onclick="simulateTask()" class="px-4 py-1.5 bg-blue-600 hover:bg-blue-500 text-white text-sm font-medium rounded shadow transition-colors flex items-center">
+                    開始分析
+                </button>
+            </div>
+            <div class="flex items-center space-x-6">
+                <div class="text-sm text-slate-300 hidden sm:block">任務 ID: <span class="font-mono text-white">TASK-DEMO-12345</span></div>
+                <a href="dashboard.html" class="text-sm bg-slate-700 hover:bg-slate-600 px-3 py-1 rounded transition-colors">回儀表板</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow flex flex-col md:flex-row overflow-hidden relative">
+        <!-- Left Panel -->
+        <div class="w-full md:w-1/3 bg-slate-50 flex flex-col p-4 md:p-6 shadow-inner border-r border-slate-200">
+            <div class="mb-4 shrink-0">
+                <h2 class="text-lg font-bold text-slate-700">待處理檔案清單</h2>
+                <p class="text-xs text-slate-500 mt-1 truncate">輸出位置: C:\Workspace\Demo_Project\outputs</p>
+            </div>
+            
+            <div class="mb-4 shrink-0">
+                <label class="block mb-2 text-sm font-medium text-slate-900">選擇 Prompt 模板</label>
+                <select class="block w-full text-sm text-slate-700 border border-slate-300 rounded-md p-2 bg-white">
+                    <option>default_cobol.txt</option>
+                    <option>fubonB_rpg.txt</option>
+                </select>
+            </div>
+
+            <div class="flex-grow overflow-y-auto">
+                <ul class="space-y-2">
+                    <li class="bg-white border border-slate-200 rounded px-3 py-2 text-sm text-slate-600 flex items-center shadow-sm">
+                        <svg class="h-4 w-4 mr-2 text-sky-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+                        ACCOUNT_PROCESS.CBL
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Right Panel -->
+        <div class="w-full md:w-2/3 flex flex-col p-4 md:p-6 bg-white">
+            <div id="progressSection" class="mb-6 shrink-0 transition-all duration-500">
+                <div class="flex justify-between items-end mb-2">
+                    <h2 class="text-lg font-bold text-slate-700">處理進度</h2>
+                    <span id="progressText" class="text-sm font-semibold text-slate-600">0/1 (0%)</span>
+                </div>
+                <div class="w-full bg-slate-200 rounded-full h-4 overflow-hidden">
+                    <div id="progressBar" class="bg-sky-600 h-full w-0 transition-all duration-500 ease-out"></div>
+                </div>
+            </div>
+
+            <div class="flex-grow flex flex-col min-h-0 mb-4 h-1/3">
+                <div class="flex justify-between items-center mb-2 shrink-0">
+                    <h3 class="text-sm font-semibold text-slate-500 uppercase tracking-wider">執行日誌</h3>
+                </div>
+                <div id="logListContainer" class="flex-grow bg-slate-50 border border-slate-200 rounded-lg p-2 overflow-y-auto font-mono text-sm">
+                    <ul id="logList" class="space-y-1 text-slate-400 italic text-center py-4">
+                        <li>等待任務啟動...</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="liveOutputSection" class="flex-grow flex flex-col min-h-0 h-1/2">
+                <div class="flex justify-between items-center mb-2 shrink-0">
+                    <h3 class="text-sm font-semibold text-slate-500 uppercase tracking-wider flex items-center">
+                        <span class="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></span>
+                        模型即時輸出 (Live Streaming)
+                    </h3>
+                </div>
+                <div class="flex-grow bg-slate-900 border border-slate-700 rounded-lg p-3 overflow-y-auto font-mono text-sm">
+                    <pre id="streamingOutput" class="text-green-400 whitespace-pre-wrap font-mono text-xs leading-relaxed"></pre>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function simulateTask() {
+            const btn = document.getElementById('headerStartBtn');
+            const badge = document.getElementById('taskStatusBadge');
+            const progressText = document.getElementById('progressText');
+            const progressBar = document.getElementById('progressBar');
+            const logList = document.getElementById('logList');
+            const streaming = document.getElementById('streamingOutput');
+
+            btn.classList.add('hidden');
+            badge.classList.remove('hidden');
+            logList.innerHTML = '';
+            logList.classList.remove('text-slate-400', 'italic', 'text-center');
+
+            function addLog(msg, type='info') {
+                const li = document.createElement('li');
+                li.className = 'flex items-start py-1 border-b border-slate-100 last:border-0';
+                li.innerHTML = `<span class="status-dot status-${type} mt-1.5"></span><span class="text-xs text-slate-400 mr-2">${new Date().toLocaleTimeString()}</span><span>${msg}</span>`;
+                logList.appendChild(li);
+            }
+
+            addLog('初始化多代理人環境...', 'processing');
+            
+            setTimeout(() => {
+                addLog('正在讀取 ACCOUNT_PROCESS.CBL...', 'processing');
+                progressBar.style.width = '30%';
+                progressText.textContent = '0/1 (30%)';
+            }, 1000);
+
+            setTimeout(() => {
+                addLog('正在啟動分析代理人 (Analyst Agent)...', 'processing');
+                streaming.textContent = '# Business Specification Document
+
+## 1. Module Overview
+This module handles bank account balance processing...';
+            }, 2000);
+
+            setTimeout(() => {
+                addLog('分析完成，正在生成 Markdown 文件...', 'success');
+                progressBar.style.width = '100%';
+                progressText.textContent = '1/1 (100%)';
+                badge.classList.remove('animate-pulse', 'bg-blue-600');
+                badge.classList.add('bg-emerald-600');
+                badge.textContent = '執行完成';
+            }, 4000);
+        }
+    </script>
+</body>
+</html>

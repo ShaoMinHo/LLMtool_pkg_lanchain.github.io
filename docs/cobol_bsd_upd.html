@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COBOL BSD 修改 - Demo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-100 text-slate-800 flex flex-col min-h-screen">
+
+    <header class="bg-slate-800 text-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4 h-16 flex items-center justify-between">
+            <h1 class="text-2xl font-semibold tracking-tight">COBOL BSD 修改 (Demo)</h1>
+            <a href="dashboard.html" class="text-sm bg-slate-700 hover:bg-slate-600 px-3 py-1 rounded transition-colors">回儀表板</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto p-8 flex-grow">
+        <div class="bg-white p-8 rounded-xl shadow-xl max-w-4xl mx-auto border border-slate-200">
+            <h2 class="text-xl font-semibold mb-6 border-b pb-4 text-slate-700">規格書自動化修訂</h2>
+            <p class="text-sm text-slate-600 mb-8">上傳新舊程式碼，系統將自動分析差異並更新 BSD 內容。</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <div class="p-4 border border-slate-200 rounded-lg bg-slate-50">
+                    <label class="block text-xs font-bold text-slate-500 uppercase mb-2">舊版規格書</label>
+                    <div class="text-sm font-medium text-slate-700">ACCOUNT_V1.docx</div>
+                </div>
+                <div class="p-4 border border-slate-200 rounded-lg bg-slate-50">
+                    <label class="block text-xs font-bold text-slate-500 uppercase mb-2">修改前程式碼</label>
+                    <div class="text-sm font-medium text-slate-700">ACCOUNT_OLD.CBL</div>
+                </div>
+                <div class="p-4 border border-slate-200 rounded-lg bg-slate-50">
+                    <label class="block text-xs font-bold text-slate-500 uppercase mb-2">修改後程式碼</label>
+                    <div class="text-sm font-medium text-slate-700">ACCOUNT_NEW.CBL</div>
+                </div>
+            </div>
+
+            <button onclick="simulateMod()" id="modBtn" class="w-full bg-indigo-600 text-white font-bold py-3 rounded-md hover:bg-indigo-700 transition-all shadow-md flex items-center justify-center">
+                開始分析與修改
+            </button>
+
+            <div id="resultSection" class="mt-8 pt-6 border-t border-slate-200 hidden">
+                <h3 class="text-lg font-medium text-slate-900 mb-4">分析結果 (差異對比)</h3>
+                <div class="bg-slate-900 p-6 rounded-lg text-slate-300 font-mono text-xs leading-relaxed overflow-x-auto">
+                    <span class="text-red-400">- 001200 IF BAL-AMOUNT > 1000</span><br>
+                    <span class="text-green-400">+ 001200 IF BAL-AMOUNT > 2000</span><br><br>
+                    <span class="text-indigo-400">### 規格書更新建議:</span><br>
+                    1. 更新「業務規則 3.1」：交易門檻由 1000 元調升至 2000 元。<br>
+                    2. 更新「欄位定義」：BAL-AMOUNT 檢核邏輯變更。
+                </div>
+                <div class="mt-6 flex justify-end">
+                    <button class="bg-emerald-600 text-white px-6 py-2 rounded font-bold text-sm shadow">下載更新版 BSD (.docx)</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function simulateMod() {
+            const btn = document.getElementById('modBtn');
+            const res = document.getElementById('resultSection');
+            btn.disabled = true;
+            btn.innerHTML = '<svg class="animate-spin h-5 w-5 mr-3 text-white" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> 正在比對程式碼差異...';
+            
+            setTimeout(() => {
+                btn.innerHTML = '分析完成';
+                btn.classList.replace('bg-indigo-600', 'bg-slate-400');
+                res.classList.remove('hidden');
+            }, 2000);
+        }
+    </script>
+</body>
+</html>

@@ -23,7 +23,6 @@
     </nav>
 
     <main class="container mx-auto px-6 py-8 flex-grow">
-        
         <!-- 上方資訊列 -->
         <div class="bg-white rounded-lg shadow-sm border border-slate-200 p-4 mb-8 flex flex-col md:flex-row justify-between items-start md:items-center space-y-4 md:space-y-0">
             <div class="flex-grow">
@@ -37,6 +36,7 @@
                 <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
                     <span class="w-2 h-2 mr-1 bg-green-500 rounded-full"></span> 連線正常 (Demo)
                 </span>
+                <a href="settings.html" class="text-sm text-indigo-600 hover:text-indigo-800 font-medium hover:underline ml-4">更改設定 &rarr;</a>
             </div>
         </div>
 
@@ -44,7 +44,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             
             <!-- COBOL BSD生成 -->
-            <a href="cobol_analysis.html" class="block bg-white rounded-xl shadow hover:shadow-lg transition-all duration-300 overflow-hidden border border-slate-100 group cursor-pointer hover:-translate-y-1 relative">
+            <a href="cobol_bsd_crt.html" class="block bg-white rounded-xl shadow hover:shadow-lg transition-all duration-300 overflow-hidden border border-slate-100 group cursor-pointer hover:-translate-y-1 relative">
                 <div class="p-6">
                     <div class="flex items-center justify-between mb-4">
                         <div class="bg-blue-500 text-white p-3 rounded-lg shadow-sm"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg></div>
@@ -56,7 +56,7 @@
             </a>
 
             <!-- COBOL BSD修改 -->
-            <a href="cobol_analysis.html" class="block bg-white rounded-xl shadow hover:shadow-lg transition-all duration-300 overflow-hidden border border-slate-100 group cursor-pointer hover:-translate-y-1 relative">
+            <a href="cobol_bsd_upd.html" class="block bg-white rounded-xl shadow hover:shadow-lg transition-all duration-300 overflow-hidden border border-slate-100 group cursor-pointer hover:-translate-y-1 relative">
                 <div class="p-6">
                     <div class="flex items-center justify-between mb-4">
                         <div class="bg-indigo-500 text-white p-3 rounded-lg shadow-sm"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" /></svg></div>
@@ -68,7 +68,7 @@
             </a>
 
             <!-- RPG BSD生成 -->
-            <a href="cobol_analysis.html" class="block bg-white rounded-xl shadow hover:shadow-lg transition-all duration-300 overflow-hidden border border-slate-100 group cursor-pointer hover:-translate-y-1 relative">
+            <a href="cobol_bsd_crt.html" class="block bg-white rounded-xl shadow hover:shadow-lg transition-all duration-300 overflow-hidden border border-slate-100 group cursor-pointer hover:-translate-y-1 relative">
                 <div class="p-6">
                     <div class="flex items-center justify-between mb-4">
                         <div class="bg-orange-500 text-white p-3 rounded-lg shadow-sm"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg></div>
@@ -80,7 +80,7 @@
             </a>
 
             <!-- RPG BSD修改 -->
-            <a href="cobol_analysis.html" class="block bg-white rounded-xl shadow hover:shadow-lg transition-all duration-300 overflow-hidden border border-slate-100 group cursor-pointer hover:-translate-y-1 relative">
+            <a href="cobol_bsd_upd.html" class="block bg-white rounded-xl shadow hover:shadow-lg transition-all duration-300 overflow-hidden border border-slate-100 group cursor-pointer hover:-translate-y-1 relative">
                 <div class="p-6">
                     <div class="flex items-center justify-between mb-4">
                         <div class="bg-amber-500 text-white p-3 rounded-lg shadow-sm"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" /></svg></div>
@@ -103,7 +103,7 @@
                 <div class="h-1 w-full bg-slate-100"><div class="h-full bg-cyan-600 w-0 group-hover:w-full transition-all duration-500"></div></div>
             </a>
 
-            <!-- 檔案下載 (File Manager) -->
+            <!-- 檔案下載 -->
             <a href="file_manager.html" class="block bg-white rounded-xl shadow hover:shadow-lg transition-all duration-300 overflow-hidden border border-slate-100 group cursor-pointer hover:-translate-y-1 relative">
                 <div class="p-6">
                     <div class="flex items-center justify-between mb-4">
@@ -115,7 +115,7 @@
                 <div class="h-1 w-full bg-slate-100"><div class="h-full bg-emerald-600 w-0 group-hover:w-full transition-all duration-500"></div></div>
             </a>
 
-            <!-- 文件轉換中心 (MD to Word) -->
+            <!-- 文件轉換中心 -->
             <a href="md_to_word.html" class="block bg-white rounded-xl shadow hover:shadow-lg transition-all duration-300 overflow-hidden border border-slate-100 group cursor-pointer hover:-translate-y-1 relative">
                 <div class="p-6">
                     <div class="flex items-center justify-between mb-4">
@@ -127,7 +127,7 @@
                 <div class="h-1 w-full bg-slate-100"><div class="h-full bg-violet-600 w-0 group-hover:w-full transition-all duration-500"></div></div>
             </a>
 
-            <!-- 文件潤飾 (Refine) -->
+            <!-- 文件潤飾 -->
             <a href="refine_document.html" class="block bg-white rounded-xl shadow hover:shadow-lg transition-all duration-300 overflow-hidden border border-slate-100 group cursor-pointer hover:-translate-y-1 relative">
                 <div class="p-6">
                     <div class="flex items-center justify-between mb-4">
@@ -139,7 +139,7 @@
                 <div class="h-1 w-full bg-slate-100"><div class="h-full bg-teal-500 w-0 group-hover:w-full transition-all duration-500"></div></div>
             </a>
 
-            <!-- 圖片輸出 (Mermaid) -->
+            <!-- 圖片輸出 -->
             <a href="mermaid_to_image.html" class="block bg-white rounded-xl shadow hover:shadow-lg transition-all duration-300 overflow-hidden border border-slate-100 group cursor-pointer hover:-translate-y-1 relative">
                 <div class="p-6">
                     <div class="flex items-center justify-between mb-4">
@@ -150,15 +150,7 @@
                 </div>
                 <div class="h-1 w-full bg-slate-100"><div class="h-full bg-pink-600 w-0 group-hover:w-full transition-all duration-500"></div></div>
             </a>
-
         </div>
-
     </main>
-
-    <footer class="bg-white border-t border-slate-200 mt-auto">
-        <div class="container mx-auto px-6 py-4 text-center text-slate-500 text-sm">
-            &copy; 2025 Dify Desktop Toolset Demo
-        </div>
-    </footer>
 </body>
 </html>

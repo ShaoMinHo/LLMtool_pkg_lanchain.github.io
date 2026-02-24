@@ -25,30 +25,42 @@
     </nav>
 
     <main class="container mx-auto px-6 py-8 flex-grow">
-        
         <div class="max-w-2xl mx-auto">
             <div class="bg-white rounded-xl shadow-md border border-slate-200 overflow-hidden">
                 <div class="p-8">
                     <div class="flex items-center space-x-3 mb-6">
                         <div class="bg-indigo-100 p-2 rounded-lg">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 00-1.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
                         </div>
                         <h2 class="text-2xl font-bold text-slate-800">偏好設定</h2>
                     </div>
 
                     <div class="space-y-6">
                         
-                        <!-- API Keys Section -->
+                        <!-- Analysis Mode Section (NEW) -->
                         <div class="mb-8 border-b border-slate-100 pb-8">
                             <h3 class="text-lg font-bold text-slate-800 mb-4 flex items-center">
-                                API 金鑰設定 (已隱藏)
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-indigo-500" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd" />
+                                </svg>
+                                分析模式設定
                             </h3>
-                            <div class="space-y-4 opacity-50">
-                                <div>
-                                    <label class="block text-sm font-medium text-slate-700 mb-1">OpenAI API Key</label>
-                                    <input type="password" value="************************" readonly class="w-full px-4 py-2 rounded-lg border border-slate-300 bg-slate-50 font-mono text-sm">
-                                </div>
+                            <div class="space-y-4">
+                                <label class="flex items-center p-3 border rounded-lg cursor-pointer transition-all hover:bg-slate-50 border-indigo-500 bg-indigo-50">
+                                    <input type="radio" name="analysis_mode" checked class="h-4 w-4 text-indigo-600">
+                                    <div class="ml-3">
+                                        <span class="block text-sm font-bold text-slate-800">多代理人深度分析 (Multi-Agent)</span>
+                                        <span class="block text-xs text-slate-500">適合超大程式，支援自動切分與深度語意分析。</span>
+                                    </div>
+                                </label>
+                                <label class="flex items-center p-3 border rounded-lg cursor-pointer transition-all hover:bg-slate-50 border-slate-200">
+                                    <input type="radio" name="analysis_mode" class="h-4 w-4 text-indigo-600">
+                                    <div class="ml-3">
+                                        <span class="block text-sm font-bold text-slate-800">經典單一模式 (Classic)</span>
+                                        <span class="block text-xs text-slate-500">傳統單次請求模式，速度較快，適合一般長度程式。</span>
+                                    </div>
+                                </label>
                             </div>
                         </div>
 
@@ -59,36 +71,27 @@
                                 <div>
                                     <label class="block text-sm font-medium text-slate-700 mb-1">AI 供應商</label>
                                     <select class="w-full px-4 py-2 rounded-lg border border-slate-300 bg-white">
-                                        <option>Google Gemini</option>
-                                        <option selected>OpenAI</option>
-                                        <option>Anthropic Claude</option>
+                                        <option selected>Google Gemini</option>
+                                        <option>OpenAI</option>
                                     </select>
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-slate-700 mb-1">使用模型</label>
                                     <select class="w-full px-4 py-2 rounded-lg border border-slate-300 bg-white">
-                                        <option>gpt-4o</option>
-                                        <option>gpt-3.5-turbo</option>
+                                        <option>gemini-1.5-pro</option>
+                                        <option>gemini-1.5-flash</option>
                                     </select>
                                 </div>
                             </div>
                         </div>
 
                         <div>
-                            <label class="block text-sm font-semibold text-slate-700 mb-2">
-                                輸出根目錄路徑 (Root Output Path)
-                            </label>
-                            <div class="flex space-x-2">
-                                <input type="text" value="C:\Workspace\Demo_Project" readonly 
-                                       class="flex-grow px-4 py-3 rounded-lg border border-slate-300 bg-slate-50 font-mono text-sm">
-                                <button class="bg-slate-200 text-slate-700 font-semibold px-4 py-2 rounded-lg border border-slate-300 flex items-center cursor-not-allowed">
-                                    瀏覽...
-                                </button>
-                            </div>
+                            <label class="block text-sm font-semibold text-slate-700 mb-2">輸出路徑</label>
+                            <input type="text" value="C:\Workspace\Demo_Project" readonly class="w-full px-4 py-3 rounded-lg border border-slate-300 bg-slate-50 font-mono text-sm">
                         </div>
 
                         <div class="pt-4 border-t border-slate-100 flex justify-end">
-                            <button onclick="alert('Demo 版本無法更改設定。')" class="bg-indigo-600 text-white font-bold py-2 px-8 rounded-lg shadow-sm transition-all transform hover:scale-105">
+                            <button onclick="alert('Demo 版本已模擬儲存。')" class="bg-indigo-600 text-white font-bold py-2 px-8 rounded-lg shadow-sm transition-all transform hover:scale-105">
                                 儲存設定
                             </button>
                         </div>
@@ -96,13 +99,6 @@
                 </div>
             </div>
         </div>
-
     </main>
-    
-    <footer class="bg-white border-t border-slate-200 mt-auto">
-        <div class="container mx-auto px-6 py-4 text-center text-slate-500 text-sm">
-            &copy; 2025 Dify Desktop Toolset Demo
-        </div>
-    </footer>
 </body>
 </html>
